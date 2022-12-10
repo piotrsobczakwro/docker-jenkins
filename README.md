@@ -2,7 +2,7 @@
 
 
 ## JENKINS_HOME
-
+```
 ${JENKINS_HOME}
  +- config.xml     (jenkins root configuration)
  +- *.xml          (other site-wide configuration files)
@@ -22,7 +22,7 @@ ${JENKINS_HOME}
                  +- build.xml      (build result summary)
                  +- log            (log file)
                  +- changelog.xml  (change log)
-				 
+```				 
 				 
 
 ## Restart Jenkins manually.
