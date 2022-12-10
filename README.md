@@ -38,4 +38,5 @@ To restart Jenkins manually:
 
 
 
+# Run on docker
 docker run --name jenkins --rm -p 8080:8182 jenkins:jcasc
