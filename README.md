@@ -1,5 +1,9 @@
 # Jenkins Notes:
 
+## Links:
+https://www.jenkins.io/doc/book/managing/plugins/
+https://gerrit-ci.gerritforge.com/view/Plugins-stable-3.5/
+
 
 ## JENKINS_HOME
 ```
