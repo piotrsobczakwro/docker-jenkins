@@ -14,8 +14,7 @@ matrix-auth:latest
 pam-auth:latest
 pipeline-github-lib:latest
 pipeline-stage-view:latest
-ssh-slaves:latest
+ssh-agent:latest
 timestamper:latest
 workflow-aggregator:latest
 ws-cleanup:latest
-audit-log:latest
