@@ -1,0 +1,24 @@
+# Podman Quadlet file for Jenkins
+# Place this file in ~/.config/containers/systemd/ (rootless) or /etc/containers/systemd/ (rootful)
+# Then run: systemctl --user daemon-reload && systemctl --user start jenkins
+# (omit --user flags for a system-wide / rootful service)
+
+[Unit]
+Description=Jenkins CI/CD Server
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+# Build the image locally first with: podman build -t jenkins:jcasc .
+Image=localhost/jenkins:jcasc
+PublishPort=8080:8080
+Volume=jenkins_home:/var/jenkins_home
+Environment=JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+AutoUpdate=local
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
