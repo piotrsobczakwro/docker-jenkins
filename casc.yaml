@@ -1,0 +1,39 @@
+# casc.yaml – Jenkins Configuration as Code
+# Automatically configures an SSH agent node and the credentials needed to
+# connect to it.  Mounted into the Jenkins container at runtime; see
+# docker-compose.yml for the volume binding.
+#
+# The SSH private key is read from /run/secrets/JENKINS_AGENT_PRIVATE_KEY
+# which is mounted by docker-compose.  Jenkins JCasC resolves
+# ${JENKINS_AGENT_PRIVATE_KEY} via its built-in FileSystemSecretSource that
+# scans /run/secrets/ by default.
+
+jenkins:
+  nodes:
+    - permanent:
+        name: "ssh-agent"
+        labelString: "linux docker"
+        mode: NORMAL
+        numExecutors: 2
+        remoteFS: "/home/jenkins"
+        launcher:
+          ssh:
+            credentialsId: "jenkins-agent-ssh-key"
+            # "agent" is the docker-compose service name for the agent container
+            host: "agent"
+            port: 22
+            sshHostKeyVerificationStrategy:
+              nonVerifyingKeyVerificationStrategy: {}
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - basicSSHUserPrivateKey:
+              scope: GLOBAL
+              id: "jenkins-agent-ssh-key"
+              username: "jenkins"
+              description: "SSH key for Jenkins SSH agent"
+              privateKeySource:
+                directEntry:
+                  privateKey: "${JENKINS_AGENT_PRIVATE_KEY}"

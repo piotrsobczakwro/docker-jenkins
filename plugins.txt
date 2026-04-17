@@ -15,6 +15,7 @@ pam-auth:latest
 pipeline-github-lib:latest
 pipeline-stage-view:latest
 ssh-agent:latest
+ssh-slaves:latest
 timestamper:latest
 workflow-aggregator:latest
 ws-cleanup:latest
